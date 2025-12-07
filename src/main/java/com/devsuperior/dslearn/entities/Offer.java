@@ -13,23 +13,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_course")
-public class Course {
+@Table(name = "tb_offer")
+public class Offer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String imgUri;
-    private String imgGrayUri;
+    private String edition;
+    private Instant startMoment;
+    private Instant endMoment;
 
-    List<Offer> offers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 }
