@@ -31,4 +31,6 @@ public class Section {
     @ManyToOne
     @JoinColumn(name = "resource_id")
     private Resource resource;
+
+    private Section prerequisite;
 }
