@@ -7,18 +7,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "tb_section")
 public class Section {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +34,16 @@ public class Section {
     @ManyToOne
     @JoinColumn(name = "prerequisite_id")
     private Section prerequisite;
+
+    public Section(Long id, String title, String description, Integer position, String imgUri, Resource resource,
+                   Section prerequisite) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.position = position;
+        this.imgUri = imgUri;
+        this.resource = resource;
+        this.prerequisite = prerequisite;
+    }
 }

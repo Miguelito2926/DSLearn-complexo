@@ -4,12 +4,18 @@ import com.devsuperior.dslearn.pk.EnrollmentPK;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -29,7 +35,15 @@ public class Enrollment {
     private boolean available;
     private boolean onlyUpdate;
 
-    public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available, boolean onlyUpdate) {
+    @ManyToMany(mappedBy = "enrollmentsDone")
+    private Set<Lesson> lessonsDone = new HashSet<>();
+
+    @OneToMany(mappedBy = "enrollment")
+    private List<Deliver> deliveries = new ArrayList<>();
+
+    public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available,
+                      boolean onlyUpdate) {
+        super();
         id.setUser(user);
         id.setOffer(offer);
         this.enrollMoment = enrollMoment;

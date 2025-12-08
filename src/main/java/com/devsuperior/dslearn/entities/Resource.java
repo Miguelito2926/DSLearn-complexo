@@ -9,7 +9,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -33,12 +31,30 @@ public class Resource {
     private Integer position;
     private String imgUri;
     private ResourceType type;
-    private String externalLink;
 
     @ManyToOne
     @JoinColumn(name = "offer_id")
     private Offer offer;
 
-    @OneToMany(mappedBy = "section_id")
+    @OneToMany(mappedBy = "resource")
     private List<Section> sections = new ArrayList<>();
+
+    public Resource(
+            Long id,
+            String title,
+            String description,
+            Integer position,
+            String imgUri,
+
+            ResourceType type,
+            Offer offer) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.position = position;
+        this.imgUri = imgUri;
+        this.type = type;
+        this.offer = offer;
+    }
 }
