@@ -2,10 +2,11 @@ package com.devsuperior.dslearn.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+@EqualsAndHashCode
 @NoArgsConstructor
 @Getter
 @Setter
